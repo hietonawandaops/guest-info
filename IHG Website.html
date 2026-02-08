@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Guest Information | Holiday Inn Express</title>
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root {
+  --ihg-blue: #003A8F;
+  --ihg-blue-light: #0054A6;
+  --dark: #333;
+  --light: #F5F7FA;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: var(--light);
+  color: var(--dark);
+}
+
+header {
+  background: var(--ihg-blue);
+  color: white;
+  padding: 22px;
+  text-align: center;
+}
+
+section {
+  padding: 20px;
+}
+
+h2 {
+  color: var(--ihg-blue);
+  margin-bottom: 12px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.icon {
+  font-size: 22px;
+  color: var(--ihg-blue);
+  margin-right: 10px;
+}
+
+.lang-toggle {
+  text-align: center;
+  margin-top: 12px;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  background: white;
+  color: var(--ihg-blue);
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #E6ECF5;
+}
+
+a {
+  color: var(--ihg-blue-light);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+</style></head>
+
+<body>
+
+<header>
+  <h1 id="title">Welcome to Holiday Inn Express</h1>
+  <p id="subtitle">Everything you need for a comfortable stay</p>
+
+  <div class="lang-toggle">
+    <button onclick="setLang('en')">English</button>
+    <button onclick="setLang('es')">Español</button>
+  </div>
+</header>
+
+<!-- Amenities -->
+<section>
+  <h2 id="amenitiesTitle">Hotel Amenities</h2>
+
+  <div class="card">
+    <p><i class="fa-solid fa-person-swimming icon"></i><span id="pool">Indoor Pool Room</span></p>
+    <p><i class="fa-solid fa-dumbbell icon"></i><span id="gym">Fitness Center</span></p>
+  </div>
+</section>
+
+<!-- WiFi -->
+<section>
+  <h2 id="wifiTitle">Wi-Fi Access</h2>
+
+  <div class="card">
+    <ol>
+      <li id="wifi1">Connect to <strong>IHGWiFi.com</strong></li>
+      <li id="wifi2">Enter your IHG One Rewards Membership ID</li>
+      <li id="wifi3">
+        Not a member? Please coordinate with the Front Desk to enroll today and
+        <strong>earn 1,000 points</strong>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- Restaurants -->
+<section>
+  <h2 id="foodTitle">Nearby Restaurants</h2>
+
+  <div class="card">
+    <p>
+      <i class="fa-solid fa-location-dot icon"></i>
+      <a href="https://www.google.com/maps/search/restaurants+near+Holiday+Inn+Express+Tonawanda"
+         target="_blank">
+        View Nearby Restaurants on Google Maps
+      </a>
+    </p>
+  </div>
+</section>
+
+<!-- Help -->
+<section>
+  <h2 id="helpTitle">Need Assistance?</h2>
+
+  <div class="card">
+    <p id="helpText">
+      Please visit or contact the Front Desk — we’re happy to help!
+    </p>
+  </div>
+</section>
+
+<script>
+const content = {
+  en: {
+    title: "Welcome to Holiday Inn Express",
+    subtitle: "Everything you need for a comfortable stay",
+    amenitiesTitle: "Hotel Amenities",
+    pool: "Indoor Pool Room",
+    gym: "Fitness Center",
+    wifiTitle: "Wi-Fi Access",
+    wifi1: "Connect to IHGWiFi.com",
+    wifi2: "Enter your IHG One Rewards Membership ID",
+    wifi3: "Not a member? Please coordinate with the Front Desk to enroll today and earn 1,000 points",
+    foodTitle: "Nearby Restaurants",
+    helpTitle: "Need Assistance?",
+    helpText: "Please visit or contact the Front Desk — we’re happy to help!"
+  },
+  es: {
+    title: "Bienvenido a Holiday Inn Express",
+    subtitle: "Todo lo que necesita para una estancia cómoda",
+    amenitiesTitle: "Servicios del Hotel",
+    pool: "Piscina Interior",
+    gym: "Gimnasio",
+    wifiTitle: "Acceso a Wi-Fi",
+    wifi1: "Conéctese a IHGWiFi.com",
+    wifi2: "Ingrese su número de membresía IHG One Rewards",
+    wifi3: "¿No es miembro? Coordine con la recepción para inscribirse hoy y ganar 1,000 puntos",
+    foodTitle: "Restaurantes Cercanos",
+    helpTitle: "¿Necesita Ayuda?",
+    helpText: "Visite o contacte la recepción — ¡con gusto le ayudamos!"
+  }
+};
+
+function setLang(lang) {
+  for (let key in content[lang]) {
+    document.getElementById(key).innerText = content[lang][key];
+  }
+}
+</script>
+
+</body>
+</html>
