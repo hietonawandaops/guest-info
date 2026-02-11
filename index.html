@@ -3,15 +3,17 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Guest Information | Holiday Inn Express</title>
+<title>Holiday Inn Express & Suites - Tonawanda</title>
 
 <!-- Icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+
+
 :root {
-  --ihg-blue: #003A8F;
-  --ihg-blue-light: #0054A6;
+  --ihg-blue: #002d72;
+  --ihg-blue-light: #002d72;
   --dark: #333;
   --light: #F5F7FA;
 }
@@ -83,17 +85,186 @@ a:hover {
 }
 </style></head>
 
+<!-- Call Front Desk Button -->
+<a href="tel:+17167432400" class="call-button">
+  <i class="fa-solid fa-phone"></i>
+  Call Front Desk
+</a>
+
+
 <body>
 
-<header>
-  <h1 id="title">Welcome to Holiday Inn Express</h1>
-  <p id="subtitle">Everything you need for a comfortable stay</p>
+<header class="premium-header">
 
-  <div class="lang-toggle">
-    <button onclick="setLang('en')">English</button>
-    <button onclick="setLang('es')">Español</button>
+  <div class="header-container">
+    <div class="logo-section">
+      <img src="https://digital.ihg.com/is/content/ihg/logo-hiex-white" 
+           alt="Holiday Inn Express Logo" 
+           class="hotel-logo">
+
+      <div class="hotel-name">
+        Holiday Inn Express & Suites – Tonawanda
+      </div>
+    </div>
+
+    <div class="language-toggle">
+      <span id="langLabel">EN</span>
+  <label class="switch">
+    <input type="checkbox" id="langSwitch" onchange="toggleLanguage()">
+    <span class="slider"></span>
+  </label>
+  <span>ES</span>
+    </div>
   </div>
+<style>
+/* --- Existing CSS above --- */
+
+/* Language Toggle */
+.language-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: white;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255,255,255,0.4);
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: white;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+  background-color: #003A8F;
+}
+
+/* --- End of Language Toggle CSS --- */
+</style>
+
+
 </header>
+
+
+
+<style>
+
+  .logo-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.hotel-logo {
+  height: 55px;
+}
+
+.hotel-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  margin-top: 5px;
+  letter-spacing: 0.5px;
+}
+
+/* Mobile adjustment */
+@media (max-width: 600px) {
+  .hotel-name {
+    font-size: 14px;
+  }
+}
+    .premium-header {
+  background: #002d72;
+  padding: 20px 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.header-container {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hotel-logo {
+  height: 60px;
+}
+
+.language-toggle button {
+  background: white;
+  color: #002d72;
+  border: none;
+  padding: 8px 14px;
+  margin-left: 8px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.language-toggle button:hover {
+  background: #002766;
+}
+
+/* Floating Call Button */
+.call-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  color: #002d72;
+  padding: 14px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s;
+  z-index: 999;
+}
+
+.call-button:hover {
+  background: #002766;
+  transform: translateY(-3px);
+}
+</style>
 
 <!-- Amenities -->
 <section>
@@ -105,8 +276,8 @@ a:hover {
     <div class="amenity-card" style="flex:1 1 250px; display:flex; align-items:center; background:#fff; border-radius:12px; padding:15px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
       <i class="fa-solid fa-bowl-food icon" style="font-size:32px; color:#003A8F; margin-right:15px;"></i>
       <div>
-        <p style="font-weight:bold; font-size:16px; margin:0;">Breakfast</p>
-        <p style="margin:2px 0 0 0; font-size:14px; color:#555;">
+        <p id="amenityBreakfast" style="font-weight:bold; font-size:16px; margin:0;">Breakfast</p>
+        <p id="amenityBreakfastTime" style="margin:2px 0 0 0; font-size:14px; color:#555;">
           Weekdays: 6:00 AM – 9:30 AM<br>
           Weekends: 6:30 AM – 9:30 AM
         </p>
@@ -117,7 +288,7 @@ a:hover {
     <div class="amenity-card" style="flex:1 1 250px; display:flex; align-items:center; background:#fff; border-radius:12px; padding:15px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
       <i class="fa-solid fa-person-swimming icon" style="font-size:32px; color:#003A8F; margin-right:15px;"></i>
       <div>
-        <p style="font-weight:bold; font-size:16px; margin:0;">Indoor Pool</p>
+        <p id="amenityPool" style="font-weight:bold; font-size:16px; margin:0;">Indoor Pool</p>
         <p style="margin:2px 0 0 0; font-size:14px; color:#555;">7:00 AM – 10:00 PM</p>
       </div>
     </div>
@@ -126,8 +297,8 @@ a:hover {
     <div class="amenity-card" style="flex:1 1 250px; display:flex; align-items:center; background:#fff; border-radius:12px; padding:15px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
       <i class="fa-solid fa-dumbbell icon" style="font-size:32px; color:#003A8F; margin-right:15px;"></i>
       <div>
-        <p style="font-weight:bold; font-size:16px; margin:0;">Fitness Center</p>
-        <p style="margin:2px 0 0 0; font-size:14px; color:#555;">Open 24 hours</p>
+        <p id="amenityGym" style="font-weight:bold; font-size:16px; margin:0;">Fitness Center</p>
+        <p id="amenityGymTime" style="margin:2px 0 0 0; font-size:14px; color:#555;">Open 24 hours</p>
       </div>
     </div>
 
@@ -135,8 +306,8 @@ a:hover {
     <div class="amenity-card" style="flex:1 1 250px; display:flex; align-items:center; background:#fff; border-radius:12px; padding:15px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
       <i class="fa-solid fa-mug-saucer icon" style="font-size:32px; color:#003A8F; margin-right:15px;"></i>
       <div>
-        <p style="font-weight:bold; font-size:16px; margin:0;">Coffee Station</p>
-        <p style="margin:2px 0 0 0; font-size:14px; color:#555;">Around the clock</p>
+        <p id="amenityCoffee" style="font-weight:bold; font-size:16px; margin:0;">Coffee Station</p>
+        <p id="amenityCoffeeTime" style="margin:2px 0 0 0; font-size:14px; color:#555;">24 hours in lobby and room</p>
       </div>
     </div>
 
@@ -598,6 +769,8 @@ a:hover {
 </script>
 
 <script>
+
+  
 const content = {
   en: {
     // Header
@@ -613,7 +786,7 @@ const content = {
     amenityGym: "Fitness Center",
     amenityGymTime: "Open 24 hours",
     amenityCoffee: "Coffee Station",
-    amenityCoffeeTime: "Around the clock",
+    amenityCoffeeTime: "24 hours in lobby and room",
 
     // Wi-Fi
     wifiTitle: "Connect to Our Wi-Fi",
@@ -664,7 +837,7 @@ const content = {
     amenityGym: "Gimnasio",
     amenityGymTime: "Abierto las 24 horas",
     amenityCoffee: "Estación de Café",
-    amenityCoffeeTime: "Todo el día",
+    amenityCoffeeTime: "24 horas en lobby y habitación",
 
     // Wi-Fi
     wifiTitle: "Acceso a Wi-Fi",
@@ -702,16 +875,30 @@ const content = {
   }
 };
 
+
 // Language switch function
+let currentLang = "en";
+
+function toggleLanguage() {
+  const switchElement = document.getElementById("langSwitch");
+
+  if (switchElement.checked) {
+    currentLang = "es";
+  } else {
+    currentLang = "en";
+  }
+
+  setLang(currentLang);
+}
 function setLang(lang) {
   for (let key in content[lang]) {
     const el = document.getElementById(key);
     if(el) el.innerHTML = content[lang][key];
   }
 }
+
+
 </script>
-
-
 
 
 </body>
