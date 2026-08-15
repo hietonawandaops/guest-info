@@ -1,905 +1,2149 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Holiday Inn Express & Suites - Tonawanda</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Holiday Inn Express & Suites - Tonawanda</title>
 
-<!-- Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<style>
+  <style>
+    :root {
+      --brand-primary: #003E6B;
+      --brand-secondary: #005a96;
+      --brand-accent: #f38e53;
+      --brand-light: #f5f9ff;
+      --text-dark: #1f2933;
+      --text-light: #666;
+      --white: #ffffff;
 
+      --gradient-main: linear-gradient(135deg, #003E6B, #005a96);
+      --gradient-accent: linear-gradient(135deg, #003E6B, #0077b6);
 
-:root {
-  --ihg-blue: #002d72;
-  --ihg-blue-light: #002d72;
-  --dark: #333;
-  --light: #F5F7FA;
-}
+      --shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.15);
+    }
 
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: var(--light);
-  color: var(--dark);
-}
+    * {
+      box-sizing: border-box;
+    }
 
-header {
-  background: var(--ihg-blue);
-  color: white;
-  padding: 22px;
-  text-align: center;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-section {
-  padding: 20px;
-}
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      background: linear-gradient(180deg, #f4f7fb, #eef3f8);
+      color: var(--text-dark);
+    }
 
-h2 {
-  color: var(--ihg-blue);
-  margin-bottom: 12px;
-}
+    /* =========================================
+       HEADER
+       ========================================= */
 
-.card {
-  background: white;
-  border-radius: 12px;
-  padding: 18px;
-  margin-bottom: 18px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
+    .premium-header {
+      background: var(--gradient-main);
+      padding: 18px 24px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      position: relative;
+      z-index: 100;
+    }
 
-.icon {
-  font-size: 22px;
-  color: var(--ihg-blue);
-  margin-right: 10px;
-}
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-.lang-toggle {
-  text-align: center;
-  margin-top: 12px;
-}
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-button {
-  padding: 8px 16px;
-  border: none;
-  background: white;
-  color: var(--ihg-blue);
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-}
+    .hotel-logo {
+      height: 42px;
+      width: auto;
+    }
 
-button:hover {
-  background: #E6ECF5;
-}
+    .hotel-name {
+      color: white;
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
 
-a {
-  color: var(--ihg-blue-light);
-  text-decoration: none;
-  font-weight: 600;
-}
+    /* Language */
 
-a:hover {
-  text-decoration: underline;
-}
-</style></head>
+    .language-selector {
+      position: relative;
+    }
 
-<!-- Call Front Desk Button -->
-<a href="tel:+17167432400" class="call-button">
-  <i class="fa-solid fa-phone"></i>
-  Call Front Desk
-</a>
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.12);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 10px 16px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s;
+    }
 
+    .lang-btn:hover {
+      background: white;
+      color: var(--brand-primary);
+    }
+
+    .lang-menu {
+      position: absolute;
+      right: 0;
+      top: 48px;
+      background: white;
+      width: 200px;
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+      display: none;
+      overflow: hidden;
+      z-index: 9999;
+    }
+
+    .lang-menu.show {
+      display: block;
+    }
+
+    .lang-menu div {
+      padding: 11px 15px;
+      cursor: pointer;
+      color: #003A8F;
+      transition: 0.2s;
+    }
+
+    .lang-menu div:hover {
+      background: #f2f6fb;
+    }
+
+    #google_translate_element {
+      display: none;
+    }
+
+    .goog-logo-link,
+    .goog-te-gadget {
+      display: none !important;
+    }
+
+    .goog-te-banner-frame {
+      display: none !important;
+    }
+
+    body {
+      top: 0 !important;
+    }
+
+    /* =========================================
+       FLOATING CALL BUTTON
+       ========================================= */
+
+    .call-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--gradient-main);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 40px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+      z-index: 999;
+      transition: 0.25s;
+    }
+
+    .call-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    /* =========================================
+       GENERAL SECTIONS
+       ========================================= */
+
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 20px;
+    }
+
+    section h2 {
+      color: #003A8F;
+      font-size: 28px;
+      margin: 0 0 22px;
+      text-align: center;
+    }
+
+    /* =========================================
+       AMENITIES
+       ========================================= */
+
+    .amenities-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .amenity-card {
+      background: white;
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      box-shadow: var(--shadow);
+      transition: 0.25s;
+    }
+
+    .amenity-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .amenity-card i {
+      font-size: 30px;
+      color: #003A8F;
+      margin-right: 14px;
+      flex-shrink: 0;
+    }
+
+    .amenity-title {
+      font-weight: 700;
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .amenity-time {
+      margin: 4px 0 0;
+      font-size: 13px;
+      color: #666;
+      line-height: 1.4;
+    }
+
+    /* =========================================
+       WIFI
+       ========================================= */
+
+    .wifi-container {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .wifi-step {
+      display: flex;
+      align-items: flex-start;
+      background: #f0f4ff;
+      border-radius: 16px;
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+      transition: 0.25s;
+    }
+
+    .wifi-step:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .wifi-icon {
+      font-size: 34px;
+      color: #003A8F;
+      margin-right: 18px;
+      flex-shrink: 0;
+    }
+
+    .wifi-text h3 {
+      margin: 0 0 5px;
+      color: #003A8F;
+      font-size: 19px;
+    }
+
+    .wifi-text p {
+      margin: 0;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    /* =========================================
+       EXPLORE SECTION
+       ========================================= */
+
+    #exploreTitle {
+      font-size: 32px;
+      font-weight: 750;
+      margin-bottom: 8px;
+    }
+
+    .explore-subtitle {
+      text-align: center;
+      color: #666;
+      margin: 0 0 22px;
+    }
+
+    /* Search */
+
+    .search-container {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    #searchInput {
+      width: min(100%, 450px);
+      padding: 14px 20px;
+      border-radius: 50px;
+      border: 2px solid #003A8F;
+      outline: none;
+      font-size: 15px;
+      background: white;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    }
+
+    #searchInput:focus {
+      box-shadow: 0 0 0 4px rgba(0, 58, 143, 0.1);
+    }
+
+    /* =========================================
+       TABS
+       ========================================= */
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .tab-button {
+      padding: 11px 28px;
+      border-radius: 50px;
+      border: 2px solid #003A8F;
+      background: white;
+      color: #003A8F;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .tab-button:hover,
+    .tab-button.active {
+      background: #003A8F;
+      color: white;
+      box-shadow: 0 6px 18px rgba(0, 58, 143, 0.25);
+    }
+
+    /* =========================================
+       CUISINE GRID
+       ========================================= */
+
+    .restaurant-categories {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      width: 100%;
+    }
+
+    .cuisine-item {
+      width: 100%;
+    }
+
+    /* Cuisine button */
+
+    .dropdown-btn {
+      width: 100%;
+      min-height: 100px;
+      padding: 20px;
+      border: none;
+      border-radius: 18px;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+      text-align: left;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      background-size: cover;
+      background-position: center;
+
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.14);
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .dropdown-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 35, 70, 0.35),
+        rgba(0, 0, 0, 0.72)
+      );
+      z-index: 0;
+    }
+
+    .dropdown-btn span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .dropdown-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .dropdown-btn.active {
+      border-radius: 18px 18px 10px 10px;
+    }
+
+    .arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown-btn.active .arrow {
+      transform: rotate(180deg);
+    }
+
+    /* =========================================
+       CUISINE IMAGES
+       ========================================= */
+
+    .indian {
+      background-image:
+        url("https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80");
+    }
+
+    .pizza {
+      background-image:
+        url("https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=80");
+    }
+
+    .fast-food {
+      background-image:
+        url("https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80");
+    }
+
+    .italian {
+      background-image:
+        url("https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=80");
+    }
+
+    .japanese {
+      background-image:
+        url("https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=900&q=80");
+    }
+
+    .mexican {
+      background-image:
+        url("https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=900&q=80");
+    }
+
+    .bar-grill {
+      background-image:
+        url("https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=80");
+    }
+
+    .american {
+      background-image:
+        url("https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=900&q=80");
+    }
+
+    .chinese {
+      background-image:
+        url("https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=900&q=80");
+    }
+
+    .italian-bar {
+      background-image:
+        url("https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=900&q=80");
+    }
+
+    /* =========================================
+       RESTAURANT DROPDOWN
+       ========================================= */
+
+    .dropdown-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s ease;
+    }
+
+    .restaurant-card {
+      background: white;
+      border-radius: 15px;
+      padding: 17px;
+      margin-top: 10px;
+      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      transition: 0.25s;
+    }
+
+    .restaurant-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 9px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-content {
+      min-width: 0;
+    }
+
+    .rest-name {
+      font-weight: 750;
+      font-size: 17px;
+      color: #003A8F;
+      margin: 0 0 5px;
+    }
+
+    .rest-address {
+      margin: 0;
+    }
+
+    .rest-address a {
+      color: #003A8F;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .rest-address a:hover {
+      text-decoration: underline;
+    }
+
+    .rest-phone {
+      font-size: 13px;
+      color: #666;
+      margin: 5px 0 0;
+    }
+
+    .rest-info {
+      font-size: 13px;
+      color: #666;
+    }
+
+    .maps-btn {
+      flex-shrink: 0;
+      background: var(--gradient-main);
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 30px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .maps-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* =========================================
+       GROCERY GRID
+       ========================================= */
+
+    .grocery-categories {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .grocery-item {
+      width: 100%;
+    }
+
+    .grocery-item .dropdown-btn {
+      min-height: 85px;
+      background-image: none;
+      background: var(--gradient-main);
+      align-items: center;
+    }
+
+    .grocery-item .dropdown-btn::before {
+      display: none;
+    }
+
+    .grocery-item .dropdown-btn span {
+      z-index: 2;
+    }
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 700px) {
+
+      .premium-header {
+        padding: 14px 15px;
+      }
+
+      .header-container {
+        gap: 10px;
+      }
+
+      .hotel-logo {
+        height: 34px;
+      }
+
+      .hotel-name {
+        font-size: 15px;
+      }
+
+      .lang-btn {
+        padding: 8px 11px;
+        font-size: 12px;
+      }
+
+      section {
+        padding: 24px 14px;
+      }
+
+      section h2 {
+        font-size: 24px;
+      }
+
+      .amenities-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .amenity-card {
+        padding: 13px;
+      }
+
+      .amenity-card i {
+        font-size: 24px;
+        margin-right: 9px;
+      }
+
+      .amenity-title {
+        font-size: 14px;
+      }
+
+      .amenity-time {
+        font-size: 11px;
+      }
+
+      .restaurant-categories,
+      .grocery-categories {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .dropdown-btn {
+        min-height: 82px;
+        padding: 13px;
+        font-size: 13px;
+        border-radius: 14px;
+      }
+
+      .restaurant-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .maps-btn {
+        width: 100%;
+      }
+
+      .tabs {
+        gap: 8px;
+      }
+
+      .tab-button {
+        padding: 10px 20px;
+        font-size: 13px;
+      }
+
+      .wifi-step {
+        padding: 15px;
+      }
+
+      .wifi-icon {
+        font-size: 28px;
+        margin-right: 12px;
+      }
+
+      .wifi-text h3 {
+        font-size: 17px;
+      }
+
+      .wifi-text p {
+        font-size: 14px;
+      }
+
+      .call-btn {
+        right: 15px;
+        bottom: 15px;
+        padding: 13px 16px;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 380px) {
+
+      .hotel-name {
+        font-size: 13px;
+      }
+
+      .restaurant-categories,
+      .grocery-categories {
+        gap: 8px;
+      }
+
+      .dropdown-btn {
+        padding: 11px 9px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
 
 <body>
 
-<header class="premium-header">
+  <!-- =========================================
+       CALL FRONT DESK
+       ========================================= -->
 
-  <div class="header-container">
-    <div class="logo-section">
-      <img src="https://digital.ihg.com/is/content/ihg/logo-hiex-white" 
-           alt="Holiday Inn Express Logo" 
-           class="hotel-logo">
+  <a href="tel:+17167432400" class="call-btn">
+    📞 Call Front Desk
+  </a>
 
-      <div class="hotel-name">
-        Holiday Inn Express & Suites – Tonawanda
+
+  <!-- =========================================
+       HEADER
+       ========================================= -->
+
+  <header class="premium-header">
+
+    <div class="header-container">
+
+      <div class="header-left">
+
+        <img
+          src="https://digital.ihg.com/is/content/ihg/logo-hiex-white"
+          class="hotel-logo"
+          alt="Holiday Inn Express">
+
+        <div class="hotel-name">
+          Holiday Inn Express & Suites – Tonawanda
+        </div>
+
       </div>
-    </div>
 
-    <div class="language-toggle">
-      <span id="langLabel">EN</span>
-  <label class="switch">
-    <input type="checkbox" id="langSwitch" onchange="toggleLanguage()">
-    <span class="slider"></span>
-  </label>
-  <span>ES</span>
-    </div>
-  </div>
-<style>
-/* --- Existing CSS above --- */
+      <div id="google_translate_element"></div>
 
-/* Language Toggle */
-.language-toggle {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 600;
-  color: white;
-}
+      <div class="language-selector">
 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 26px;
-}
+        <button class="lang-btn" onclick="toggleLangMenu()">
+          🌐 Language
+        </button>
 
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+        <div class="lang-menu" id="langMenu">
 
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(255,255,255,0.4);
-  transition: .4s;
-  border-radius: 34px;
-}
+          <div onclick="translateLanguage('en')">🇺🇸 English</div>
+          <div onclick="translateLanguage('es')">🇪🇸 Español</div>
+          <div onclick="translateLanguage('fr')">🇫🇷 Français</div>
+          <div onclick="translateLanguage('de')">🇩🇪 Deutsch</div>
+          <div onclick="translateLanguage('it')">🇮🇹 Italiano</div>
+          <div onclick="translateLanguage('pt')">🇧🇷 Português</div>
+          <div onclick="translateLanguage('zh-CN')">🇨🇳 中文</div>
+          <div onclick="translateLanguage('ja')">🇯🇵 日本語</div>
+          <div onclick="translateLanguage('ko')">🇰🇷 한국어</div>
+          <div onclick="translateLanguage('ar')">🇸🇦 العربية</div>
+          <div onclick="translateLanguage('hi')">🇮🇳 हिन्दी</div>
+          <div onclick="translateLanguage('ru')">🇷🇺 Русский</div>
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 20px;
-  width: 20px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
+        </div>
 
-input:checked + .slider {
-  background-color: white;
-}
-
-input:checked + .slider:before {
-  transform: translateX(24px);
-  background-color: #003A8F;
-}
-
-/* --- End of Language Toggle CSS --- */
-</style>
-
-
-</header>
-
-
-
-<style>
-
-  .logo-section {
-  display: flex;
-  flex-direction: column;
-}
-
-.hotel-logo {
-  height: 55px;
-}
-
-.hotel-name {
-  font-size: 16px;
-  font-weight: 600;
-  color: white;
-  margin-top: 5px;
-  letter-spacing: 0.5px;
-}
-
-/* Mobile adjustment */
-@media (max-width: 600px) {
-  .hotel-name {
-    font-size: 14px;
-  }
-}
-    .premium-header {
-  background: #002d72;
-  padding: 20px 30px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-}
-
-.header-container {
-  max-width: 1100px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.hotel-logo {
-  height: 60px;
-}
-
-.language-toggle button {
-  background: white;
-  color: #002d72;
-  border: none;
-  padding: 8px 14px;
-  margin-left: 8px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.language-toggle button:hover {
-  background: #002766;
-}
-
-/* Floating Call Button */
-.call-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: white;
-  color: #002d72;
-  padding: 14px 20px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: 0.3s;
-  z-index: 999;
-}
-
-.call-button:hover {
-  background: #002766;
-  transform: translateY(-3px);
-}
-</style>
-
-<!-- Amenities -->
-<section>
-  <h2 id="amenitiesTitle" style="text-align:center; margin-bottom:20px; color:#003A8F;">Hotel Amenities</h2>
-
-  <div class="amenities-container" style="display:flex; flex-wrap:wrap; gap:15px; justify-content:center;">
-
-    <!-- Breakfast -->
-    <div class="amenity-card" style="flex:1 1 250px; display:flex; align-items:center; background:#fff; border-radius:12px; padding:15px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
-      <i class="fa-solid fa-bowl-food icon" style="font-size:32px; color:#003A8F; margin-right:15px;"></i>
-      <div>
-        <p id="amenityBreakfast" style="font-weight:bold; font-size:16px; margin:0;">Breakfast</p>
-        <p id="amenityBreakfastTime" style="margin:2px 0 0 0; font-size:14px; color:#555;">
-          Weekdays: 6:00 AM – 9:30 AM<br>
-          Weekends: 6:30 AM – 9:30 AM
-        </p>
       </div>
+
     </div>
 
-    <!-- Pool -->
-    <div class="amenity-card" style="flex:1 1 250px; display:flex; align-items:center; background:#fff; border-radius:12px; padding:15px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
-      <i class="fa-solid fa-person-swimming icon" style="font-size:32px; color:#003A8F; margin-right:15px;"></i>
-      <div>
-        <p id="amenityPool" style="font-weight:bold; font-size:16px; margin:0;">Indoor Pool</p>
-        <p style="margin:2px 0 0 0; font-size:14px; color:#555;">7:00 AM – 10:00 PM</p>
+  </header>
+
+
+  <!-- =========================================
+       AMENITIES
+       ========================================= -->
+
+  <section>
+
+    <h2 id="amenitiesTitle">
+      Hotel Amenities
+    </h2>
+
+    <div class="amenities-container">
+
+      <div class="amenity-card">
+
+        <i class="fa-solid fa-bowl-food"></i>
+
+        <div>
+          <p class="amenity-title" id="amenityBreakfast">
+            Breakfast
+          </p>
+
+          <p class="amenity-time" id="amenityBreakfastTime">
+            Weekdays: 6:00 AM – 9:30 AM<br>
+            Weekends: 6:30 AM – 9:30 AM
+          </p>
+        </div>
+
       </div>
-    </div>
 
-    <!-- Fitness -->
-    <div class="amenity-card" style="flex:1 1 250px; display:flex; align-items:center; background:#fff; border-radius:12px; padding:15px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
-      <i class="fa-solid fa-dumbbell icon" style="font-size:32px; color:#003A8F; margin-right:15px;"></i>
-      <div>
-        <p id="amenityGym" style="font-weight:bold; font-size:16px; margin:0;">Fitness Center</p>
-        <p id="amenityGymTime" style="margin:2px 0 0 0; font-size:14px; color:#555;">Open 24 hours</p>
+
+      <div class="amenity-card">
+
+        <i class="fa-solid fa-person-swimming"></i>
+
+        <div>
+          <p class="amenity-title" id="amenityPool">
+            Indoor Pool
+          </p>
+
+          <p class="amenity-time">
+            7:00 AM – 10:00 PM
+          </p>
+        </div>
+
       </div>
-    </div>
 
-    <!-- Coffee -->
-    <div class="amenity-card" style="flex:1 1 250px; display:flex; align-items:center; background:#fff; border-radius:12px; padding:15px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
-      <i class="fa-solid fa-mug-saucer icon" style="font-size:32px; color:#003A8F; margin-right:15px;"></i>
-      <div>
-        <p id="amenityCoffee" style="font-weight:bold; font-size:16px; margin:0;">Coffee Station</p>
-        <p id="amenityCoffeeTime" style="margin:2px 0 0 0; font-size:14px; color:#555;">24 hours in lobby and room</p>
+
+      <div class="amenity-card">
+
+        <i class="fa-solid fa-dumbbell"></i>
+
+        <div>
+          <p class="amenity-title" id="amenityGym">
+            Fitness Center
+          </p>
+
+          <p class="amenity-time" id="amenityGymTime">
+            Open 24 hours
+          </p>
+        </div>
+
       </div>
-    </div>
 
-  </div>
-</section>
 
-<!-- WiFi Section -->
-<section id="wifi">
-  <h2 id="wifiTitle">Connect to Our Wi-Fi</h2>
+      <div class="amenity-card">
 
-  <div class="wifi-container">
+        <i class="fa-solid fa-mug-saucer"></i>
 
-    <div class="wifi-step">
-      <i class="fa-solid fa-wifi wifi-icon"></i>
-      <div class="wifi-text">
-        <h3 id="wifiStep1Title">Step 1</h3>
-        <p id="wifiStep1">Connect to <strong>IHGWiFi.com</strong> from your device.</p>
+        <div>
+          <p class="amenity-title" id="amenityCoffee">
+            Coffee Station
+          </p>
+
+          <p class="amenity-time" id="amenityCoffeeTime">
+            24 hours in lobby and room
+          </p>
+        </div>
+
       </div>
+
     </div>
 
-    <div class="wifi-step">
-      <i class="fa-solid fa-key wifi-icon"></i>
-      <div class="wifi-text">
-        <h3 id="wifiStep2Title">Step 2</h3>
-        <p id="wifiStep2">Enter your <strong>IHG One Rewards Membership ID</strong> to enjoy instant access.</p>
+  </section>
+
+
+  <!-- =========================================
+       WIFI
+       ========================================= -->
+
+  <section id="wifi">
+
+    <h2 id="wifiTitle">
+      Connect to Our Wi-Fi
+    </h2>
+
+    <div class="wifi-container">
+
+      <div class="wifi-step">
+
+        <i class="fa-solid fa-wifi wifi-icon"></i>
+
+        <div class="wifi-text">
+
+          <h3 id="wifiStep1Title">
+            Step 1
+          </h3>
+
+          <p id="wifiStep1">
+            Connect to <strong>IHGWiFi.com</strong> from your device.
+          </p>
+
+        </div>
+
       </div>
-    </div>
 
-    <div class="wifi-step">
-      <i class="fa-solid fa-gift wifi-icon"></i>
-      <div class="wifi-text">
-        <h3 id="wifiStep3Title">Not a Member?</h3>
-        <p id="wifiStep3">
-          Stop by the Front Desk to enroll today and <strong>earn 1,000 bonus points!</strong> 
-          Join our community and unlock exclusive rewards and offers on future stays.
-        </p>
+
+      <div class="wifi-step">
+
+        <i class="fa-solid fa-key wifi-icon"></i>
+
+        <div class="wifi-text">
+
+          <h3 id="wifiStep2Title">
+            Step 2
+          </h3>
+
+          <p id="wifiStep2">
+            Enter your <strong>IHG One Rewards Membership ID</strong>
+            to enjoy instant access.
+          </p>
+
+        </div>
+
       </div>
+
+
+      <div class="wifi-step">
+
+        <i class="fa-solid fa-gift wifi-icon"></i>
+
+        <div class="wifi-text">
+
+          <h3 id="wifiStep3Title">
+            Not a Member?
+          </h3>
+
+          <p id="wifiStep3">
+            Stop by the Front Desk to enroll today and
+            <strong>earn 1,000 bonus points!</strong>
+            Join our community and unlock exclusive rewards
+            and offers on future stays.
+          </p>
+
+        </div>
+
+      </div>
+
     </div>
 
-  </div>
-</section>
+  </section>
 
-<!-- WiFi CSS -->
-<style>
-  #wifiTitle {
-    text-align:center;
-    color:#003A8F;
-    font-size:28px;
-    margin-bottom:20px;
-  }
 
-  .wifi-container {
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-    max-width:600px;
-    margin:0 auto;
-  }
+  <!-- =========================================
+       EXPLORE NEARBY
+       ========================================= -->
 
-  .wifi-step {
-    display:flex;
-    align-items:flex-start;
-    background:#f0f4ff;
-    border-radius:12px;
-    padding:15px 20px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.1);
-    transition:transform 0.2s ease, box-shadow 0.2s ease;
-  }
+  <section>
 
-  .wifi-step:hover {
-    transform:translateY(-3px);
-    box-shadow:0 6px 16px rgba(0,0,0,0.15);
-  }
+    <h2 id="exploreTitle">
+      Explore Nearby
+    </h2>
 
-  .wifi-icon {
-    font-size:36px;
-    color:#003A8F;
-    margin-right:15px;
-    flex-shrink:0;
-  }
+    <p class="explore-subtitle">
+      Discover restaurants and grocery stores near the hotel
+    </p>
 
-  .wifi-text h3 {
-    margin:0 0 5px 0;
-    font-size:20px;
-    color:#003A8F;
-  }
 
-  .wifi-text p {
-    margin:0;
-    font-size:16px;
-    line-height:1.5;
-    color:#333;
-  }
+    <!-- Search -->
 
-  @media (max-width:600px){
-    .wifi-step {
-      flex-direction:row;
-      gap:10px;
+    <div class="search-container">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search restaurants..."
+        onkeyup="filterRestaurants()">
+
+    </div>
+
+
+    <!-- Tabs -->
+
+    <div class="tabs">
+
+      <button
+        id="restaurantsTitle"
+        class="tab-button active"
+        data-tab="restaurants">
+        Restaurants
+      </button>
+
+      <button
+        id="groceriesTitle"
+        class="tab-button"
+        data-tab="groceries">
+        Groceries
+      </button>
+
+    </div>
+
+
+    <!-- =========================================
+         RESTAURANTS
+         ========================================= -->
+
+    <div id="restaurants" class="tab-content">
+
+      <div class="restaurant-categories">
+
+
+        <!-- INDIAN -->
+
+        <div class="cuisine-item">
+
+          <button class="dropdown-btn indian">
+
+            <span>
+              🇮🇳 Indian Cuisine
+            </span>
+
+            <span class="arrow">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+
+          </button>
+
+          <div class="dropdown-content">
+
+            <div class="restaurant-card">
+
+              <div class="card-content">
+
+                <p class="rest-name">
+                  La Nova Pizza
+                </p>
+
+                <p class="rest-info">
+                  0.8 miles | (716) 555-1234
+                </p>
+
+              </div>
+
+              <button
+                class="maps-btn"
+                onclick="window.open('https://maps.google.com?q=La+Nova+Pizza','_blank')">
+                📍 Map
+              </button>
+
+            </div>
+
+
+            <div class="restaurant-card">
+
+              <p class="rest-name">
+                Indian Kitchen King
+              </p>
+
+              <p class="rest-address">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=610+Main+St,+Niagara+Falls,+NY+14301"
+                  target="_blank">
+                  610 Main St, Niagara Falls, NY 14301
+                </a>
+              </p>
+
+              <p class="rest-phone">
+                (716) 243-8659
+              </p>
+
+            </div>
+
+
+            <div class="restaurant-card">
+
+              <p class="rest-name">
+                Delhi Palace of Buffalo
+              </p>
+
+              <p class="rest-address">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=1051+Sheridan+Dr,+Tonawanda,+NY+14150"
+                  target="_blank">
+                  1051 Sheridan Dr, Tonawanda, NY 14150
+                </a>
+              </p>
+
+              <p class="rest-phone">
+                (347) 403-8691
+              </p>
+
+            </div>
+
+
+            <div class="restaurant-card">
+
+              <p class="rest-name">
+                Taste of India
+              </p>
+
+              <p class="rest-address">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=3192+Sheridan+Dr,+Buffalo,+NY+14226"
+                  target="_blank">
+                  3192 Sheridan Dr, Buffalo, NY 14226
+                </a>
+              </p>
+
+              <p class="rest-phone">
+                (716) 837-0460
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- PIZZA -->
+
+        <div class="cuisine-item">
+
+          <button class="dropdown-btn pizza">
+
+            <span>
+              🍕 Pizza
+            </span>
+
+            <span class="arrow">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+
+          </button>
+
+          <div class="dropdown-content">
+
+            <div class="restaurant-card">
+
+              <p class="rest-name">
+                Just Pizza
+              </p>
+
+              <p class="rest-address">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=2319+Niagara+Fls+Blvd,+Buffalo,+NY+14228"
+                  target="_blank">
+                  2319 Niagara Fls Blvd, Buffalo, NY 14228
+                </a>
+              </p>
+
+              <p class="rest-phone">
+                (716) 568-1000
+              </p>
+
+            </div>
+
+
+            <div class="restaurant-card">
+
+              <p class="rest-name">
+                Franco’s Pizza
+              </p>
+
+              <p class="rest-address">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=2306+Niagara+Fls+Blvd,+Tonawanda,+NY+14150"
+                  target="_blank">
+                  2306 Niagara Fls Blvd, Tonawanda, NY 14150
+                </a>
+              </p>
+
+              <p class="rest-phone">
+                (716) 692-3326
+              </p>
+
+            </div>
+
+
+            <div class="restaurant-card">
+
+              <p class="rest-name">
+                My Tomato Pie
+              </p>
+
+              <p class="rest-address">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=3055+Niagara+Fls+Blvd,+Amherst,+NY+14228"
+                  target="_blank">
+                  3055 Niagara Fls Blvd, Amherst, NY 14228
+                </a>
+              </p>
+
+              <p class="rest-phone">
+                (716) 838-0969
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- FAST FOOD -->
+
+        <div class="cuisine-item">
+
+          <button class="dropdown-btn fast-food">
+
+            <span>
+              🍔 Fast Food
+            </span>
+
+            <span class="arrow">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+
+          </button>
+
+          <div class="dropdown-content">
+
+            <div class="restaurant-card">
+              <p class="rest-name">Anderson’s Frozen Yogurt</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=2369+Niagara+Fls+Blvd,+Amherst,+NY+14228"
+                  target="_blank">
+                  2369 Niagara Fls Blvd, Amherst, NY 14228
+                </a>
+              </p>
+              <p class="rest-phone">(716) 691-8970</p>
+            </div>
+
+            <div class="restaurant-card">
+              <p class="rest-name">Ted’s Hot Dogs</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=2351+Niagara+Fls+Blvd,+Amherst,+NY+14228"
+                  target="_blank">
+                  2351 Niagara Fls Blvd, Amherst, NY 14228
+                </a>
+              </p>
+              <p class="rest-phone">(716) 691-7883</p>
+            </div>
+
+            <div class="restaurant-card">
+              <p class="rest-name">Checkers</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=2374+Niagara+Fls+Blvd,+Tonawanda,+NY+14150"
+                  target="_blank">
+                  2374 Niagara Fls Blvd, Tonawanda, NY 14150
+                </a>
+              </p>
+              <p class="rest-phone">(716) 262-2046</p>
+            </div>
+
+            <div class="restaurant-card">
+              <p class="rest-name">Wendy’s</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=3180+Niagara+Fls+Blvd,+Amherst,+NY+14228"
+                  target="_blank">
+                  3180 Niagara Fls Blvd, Amherst, NY 14228
+                </a>
+              </p>
+              <p class="rest-phone">(716) 220-9526</p>
+            </div>
+
+            <div class="restaurant-card">
+              <p class="rest-name">McDonald’s</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=1385+Niagara+Fls+Blvd,+Amherst,+NY+14226"
+                  target="_blank">
+                  1385 Niagara Fls Blvd, Amherst, NY 14226
+                </a>
+              </p>
+              <p class="rest-phone">(716) 213-0014</p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ITALIAN -->
+
+        <div class="cuisine-item">
+
+          <button class="dropdown-btn italian">
+
+            <span>
+              🍝 Italian Cuisine
+            </span>
+
+            <span class="arrow">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+
+          </button>
+
+          <div class="dropdown-content">
+
+            <div class="restaurant-card">
+              <p class="rest-name">Carrabba's Italian Grill</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=1645+Niagara+Fls+Blvd,+Amherst,+NY+14228"
+                  target="_blank">
+                  1645 Niagara Fls Blvd, Amherst, NY 14228
+                </a>
+              </p>
+              <p class="rest-phone">(716) 833-5003</p>
+            </div>
+
+            <div class="restaurant-card">
+              <p class="rest-name">Olive Garden</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=3951+Maple+Rd,+Amherst,+NY+14226"
+                  target="_blank">
+                  3951 Maple Rd, Amherst, NY 14226
+                </a>
+              </p>
+              <p class="rest-phone">(716) 837-5211</p>
+            </div>
+
+            <div class="restaurant-card">
+              <p class="rest-name">Lumber Jack’s Patio Grill</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=1000+River+Rd,+North+Tonawanda,+NY+14120"
+                  target="_blank">
+                  1000 River Rd, North Tonawanda, NY 14120
+                </a>
+              </p>
+              <p class="rest-phone">(716) 693-4349</p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- JAPANESE / THAI -->
+
+        <div class="cuisine-item">
+
+          <button class="dropdown-btn japanese">
+
+            <span>
+              🍣 Japanese & Thai
+            </span>
+
+            <span class="arrow">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+
+          </button>
+
+          <div class="dropdown-content">
+
+            <div class="restaurant-card">
+              <p class="rest-name">Kani Japanese & Thai</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=2298+Niagara+Fls+Blvd,+Tonawanda,+NY+14150"
+                  target="_blank">
+                  2298 Niagara Fls Blvd, Tonawanda, NY 14150
+                </a>
+              </p>
+              <p class="rest-phone">(716) 743-5434</p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- MEXICAN -->
+
+        <div class="cuisine-item">
+
+          <button class="dropdown-btn mexican">
+
+            <span>
+              🌮 Mexican Cuisine
+            </span>
+
+            <span class="arrow">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+
+          </button>
+
+          <div class="dropdown-content">
+
+            <div class="restaurant-card">
+              <p class="rest-name">El Ranchito 3</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=2447+Niagara+Fls+Blvd,+Buffalo,+NY+14228"
+                  target="_blank">
+                  2447 Niagara Fls Blvd, Buffalo, NY 14228
+                </a>
+              </p>
+              <p class="rest-phone">(716) 691-5806</p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- BAR & GRILL -->
+
+        <div class="cuisine-item">
+
+          <button class="dropdown-btn bar-grill">
+
+            <span>
+              🍺 Bar & Grill
+            </span>
+
+            <span class="arrow">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+
+          </button>
+
+          <div class="dropdown-content">
+
+            <div class="restaurant-card">
+              <p class="rest-name">Raintree Bar and Grill</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=2970+Colvin+Blvd,+Tonawanda,+NY+14150"
+                  target="_blank">
+                  2970 Colvin Blvd, Tonawanda, NY 14150
+                </a>
+              </p>
+              <p class="rest-phone">(716) 695-3504</p>
+            </div>
+
+            <div class="restaurant-card">
+              <p class="rest-name">1818 Bar & Grill</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=1818+Sweeney+St,+North+Tonawanda,+NY+14120"
+                  target="_blank">
+                  1818 Sweeney St, North Tonawanda, NY 14120
+                </a>
+              </p>
+              <p class="rest-phone">(716) 260-1832</p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- AMERICAN -->
+
+        <div class="cuisine-item">
+
+          <button class="dropdown-btn american">
+
+            <span>
+              🥩 American Grill
+            </span>
+
+            <span class="arrow">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+
+          </button>
+
+          <div class="dropdown-content">
+
+            <div class="restaurant-card">
+              <p class="rest-name">Applebee's Grill + Bar</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=2656+Delaware+Ave,+Buffalo,+NY+14216"
+                  target="_blank">
+                  2656 Delaware Ave, Buffalo, NY 14216
+                </a>
+              </p>
+              <p class="rest-phone">(716) 831-8062</p>
+            </div>
+
+            <div class="restaurant-card">
+              <p class="rest-name">Outback Steakhouse</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=1551+Niagara+Fls+Blvd,+Amherst,+NY+14228"
+                  target="_blank">
+                  1551 Niagara Fls Blvd, Amherst, NY 14228
+                </a>
+              </p>
+              <p class="rest-phone">(716) 833-6067</p>
+            </div>
+
+            <div class="restaurant-card">
+              <p class="rest-name">Tully's Good Times Amherst</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=1459+Niagara+Fls+Unit+D,+Amherst,+NY+14228"
+                  target="_blank">
+                  1459 Niagara Fls Unit D, Amherst, NY 14228
+                </a>
+              </p>
+              <p class="rest-phone">(716) 446-0007</p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- CHINESE -->
+
+        <div class="cuisine-item">
+
+          <button class="dropdown-btn chinese">
+
+            <span>
+              🥢 Chinese & Asian
+            </span>
+
+            <span class="arrow">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+
+          </button>
+
+          <div class="dropdown-content">
+
+            <div class="restaurant-card">
+              <p class="rest-name">Golden Wok</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=3870+E+Robinson+Rd+%232001,+Amherst,+NY+14228"
+                  target="_blank">
+                  3870 E Robinson Rd #2001, Amherst, NY 14228
+                </a>
+              </p>
+              <p class="rest-phone">(716) 691-0399</p>
+            </div>
+
+            <div class="restaurant-card">
+              <p class="rest-name">P.F. Chang's</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=Galleria+Drive,+Buffalo,+NY"
+                  target="_blank">
+                  Galleria Drive, Buffalo, NY
+                </a>
+              </p>
+              <p class="rest-phone">(716) 706-0791</p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ITALIAN BAR -->
+
+        <div class="cuisine-item">
+
+          <button class="dropdown-btn italian-bar">
+
+            <span>
+              🍷 Italian Bar & Restaurant
+            </span>
+
+            <span class="arrow">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+
+          </button>
+
+          <div class="dropdown-content">
+
+            <div class="restaurant-card">
+              <p class="rest-name">Sinatra’s</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=945+Kenmore+Ave,+Tonawanda,+NY+14223"
+                  target="_blank">
+                  945 Kenmore Ave, Tonawanda, NY 14223
+                </a>
+              </p>
+              <p class="rest-phone">(716) 877-9419</p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================================
+         GROCERIES
+         ========================================= -->
+
+    <div id="groceries" class="tab-content" style="display:none;">
+
+      <div class="grocery-categories">
+
+
+        <!-- SUPERMARKETS -->
+
+        <div class="grocery-item">
+
+          <button class="dropdown-btn">
+
+            <span>
+              🛒 Supermarkets
+            </span>
+
+            <span class="arrow">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+
+          </button>
+
+          <div class="dropdown-content">
+
+            <div class="restaurant-card">
+              <p class="rest-name">Walmart Supercenter</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=886+Niagara+Falls+Blvd,+North+Tonawanda,+NY+14120"
+                  target="_blank">
+                  886 Niagara Falls Blvd, North Tonawanda, NY 14120
+                </a>
+              </p>
+            </div>
+
+            <div class="restaurant-card">
+              <p class="rest-name">Walmart Supercenter</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=3290+Sheridan+Dr,+Amherst,+NY+14226"
+                  target="_blank">
+                  3290 Sheridan Dr, Amherst, NY 14226
+                </a>
+              </p>
+            </div>
+
+            <div class="restaurant-card">
+              <p class="rest-name">Wegmans</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=675+Alberta+Dr,+Amherst,+NY+14226"
+                  target="_blank">
+                  675 Alberta Dr, Amherst, NY 14226
+                </a>
+              </p>
+            </div>
+
+            <div class="restaurant-card">
+              <p class="rest-name">Tops Friendly Markets</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=3980+Maple+Rd,+Amherst,+NY+14226"
+                  target="_blank">
+                  3980 Maple Rd, Amherst, NY 14226
+                </a>
+              </p>
+            </div>
+
+            <div class="restaurant-card">
+              <p class="rest-name">Price Rite Marketplace of Amherst</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=4224+Maple+Rd,+Amherst,+NY+14226"
+                  target="_blank">
+                  4224 Maple Rd, Amherst, NY 14226
+                </a>
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- SPECIALTY -->
+
+        <div class="grocery-item">
+
+          <button class="dropdown-btn">
+
+            <span>
+              🥬 Specialty Stores
+            </span>
+
+            <span class="arrow">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+
+          </button>
+
+          <div class="dropdown-content">
+
+            <div class="restaurant-card">
+              <p class="rest-name">Whole Foods Market</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=3139+Sheridan+Dr,+Amherst,+NY+14226"
+                  target="_blank">
+                  3139 Sheridan Dr, Amherst, NY 14226
+                </a>
+              </p>
+            </div>
+
+            <div class="restaurant-card">
+              <p class="rest-name">Trader Joe's</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=1565+Niagara+Falls+Blvd,+Amherst,+NY+14228"
+                  target="_blank">
+                  1565 Niagara Falls Blvd, Amherst, NY 14228
+                </a>
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- DISCOUNT -->
+
+        <div class="grocery-item">
+
+          <button class="dropdown-btn">
+
+            <span>
+              💰 Discount Stores
+            </span>
+
+            <span class="arrow">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+
+          </button>
+
+          <div class="dropdown-content">
+
+            <div class="restaurant-card">
+              <p class="rest-name">ALDI</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=4030+Maple+Rd,+Amherst,+NY+14226"
+                  target="_blank">
+                  4030 Maple Rd, Amherst, NY 14226
+                </a>
+              </p>
+            </div>
+
+            <div class="restaurant-card">
+              <p class="rest-name">ALDI</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=3939+Niagara+Falls+Blvd,+North+Tonawanda,+NY+14120"
+                  target="_blank">
+                  3939 Niagara Falls Blvd, North Tonawanda, NY 14120
+                </a>
+              </p>
+            </div>
+
+            <div class="restaurant-card">
+              <p class="rest-name">Dollar General</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=2250+Niagara+Falls+Blvd,+Tonawanda,+NY+14150"
+                  target="_blank">
+                  2250 Niagara Falls Blvd, Tonawanda, NY 14150
+                </a>
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ETHNIC -->
+
+        <div class="grocery-item">
+
+          <button class="dropdown-btn">
+
+            <span>
+              🌎 Ethnic Markets
+            </span>
+
+            <span class="arrow">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+
+          </button>
+
+          <div class="dropdown-content">
+
+            <div class="restaurant-card">
+              <p class="rest-name">Asia Food Market</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=2055+Niagara+Falls+Blvd,+Amherst,+NY+14228"
+                  target="_blank">
+                  2055 Niagara Falls Blvd, Amherst, NY 14228
+                </a>
+              </p>
+            </div>
+
+            <div class="restaurant-card">
+              <p class="rest-name">Euro Taste Foods and Deli</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=2858+Niagara+Falls+Blvd,+Buffalo,+NY+14228"
+                  target="_blank">
+                  2858 Niagara Falls Blvd, Buffalo, NY 14228
+                </a>
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- CONVENIENCE -->
+
+        <div class="grocery-item">
+
+          <button class="dropdown-btn">
+
+            <span>
+              🏪 Convenience Stores
+            </span>
+
+            <span class="arrow">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+
+          </button>
+
+          <div class="dropdown-content">
+
+            <div class="restaurant-card">
+              <p class="rest-name">Tops Plaza</p>
+              <p class="rest-address">
+                <a href="https://www.google.com/maps/search/?api=1&query=3190+Niagara+Falls+Blvd,+Buffalo,+NY+14228"
+                  target="_blank">
+                  3190 Niagara Falls Blvd, Buffalo, NY 14228
+                </a>
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================
+       GOOGLE TRANSLATE
+       ========================================= -->
+
+  <script>
+
+    function googleTranslateElementInit() {
+
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages:
+          'en,es,fr,de,it,pt,zh-CN,ja,ko,ar,hi,ru',
+        layout:
+          google.translate.TranslateElement.InlineLayout.SIMPLE
+      },
+        'google_translate_element'
+      );
+
     }
-  }
-</style>
 
 
+    function toggleLangMenu() {
 
-<!-- Restaurants -->
-<section>
-  <h2 style="text-align:center; color:#003A8F; margin-bottom:20px;">Explore Nearby</h2>
+      document
+        .getElementById('langMenu')
+        .classList
+        .toggle('show');
 
-  <!-- Tabs -->
-  <div class="tabs" style="display:flex; justify-content:center; gap:20px; margin-bottom:20px;">
-    <button class="tab-button active" data-tab="restaurants">Restaurants</button>
-    <button class="tab-button" data-tab="groceries">Groceries</button>
-  </div>
+    }
 
-  <!-- Restaurants Tab -->
-  <div id="restaurants" class="tab-content" style="display:block;">
-    <div class="dropdown-container">
 
-      <!-- Indian -->
-      <button id="cuisineIndian"  class="dropdown-btn">Indian Cuisine &#9662;</button>
-      <div class="dropdown-content">
-        <div class="card">
-          <p class="rest-name">Indian Kitchen King</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=610+Main+St,+Niagara+Falls,+NY+14301" target="_blank">610 Main St, Niagara Falls, NY 14301</a></p>
-          <p class="rest-phone">(716) 243-8659</p>
-        </div>
-        <div class="card">
-          <p class="rest-name">Delhi Palace of Buffalo</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=1051+Sheridan+Dr,+Tonawanda,+NY+14150" target="_blank">1051 Sheridan Dr, Tonawanda, NY 14150</a></p>
-          <p class="rest-phone">(347) 403-8691</p>
-        </div>
-        <div class="card">
-          <p class="rest-name">Taste of India</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=3192+Sheridan+Dr,+Buffalo,+NY+14226" target="_blank">3192 Sheridan Dr, Buffalo, NY 14226</a></p>
-          <p class="rest-phone">(716) 837-0460</p>
-        </div>
-      </div>
+    function translateLanguage(lang) {
 
-      <!-- Pizza -->
-      <button id="cuisinePizza" class="dropdown-btn">Pizza &#9662;</button>
-      <div class="dropdown-content">
-        <div class="card">
-          <p class="rest-name">Just Pizza</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=2319+Niagara+Fls+Blvd,+Buffalo,+NY+14228" target="_blank">2319 Niagara Fls Blvd, Buffalo, NY 14228</a></p>
-          <p class="rest-phone">(716) 568-1000</p>
-        </div>
-        <div class="card">
-          <p class="rest-name">Franco’s Pizza</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=2306+Niagara+Fls+Blvd,+Tonawanda,+NY+14150" target="_blank">2306 Niagara Fls Blvd, Tonawanda, NY 14150</a></p>
-          <p class="rest-phone">(716) 692-3326</p>
-        </div>
-        <div class="card">
-          <p class="rest-name">My Tomato Pie</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=3055+Niagara+Fls+Blvd,+Amherst,+NY+14228" target="_blank">3055 Niagara Fls Blvd, Amherst, NY 14228</a></p>
-          <p class="rest-phone">(716) 838-0969</p>
-        </div>
-      </div>
+      const select =
+        document.querySelector(
+          "#google_translate_element select"
+        );
 
-      <!-- Fast Food -->
-      <button id="cuisineFastFood" class="dropdown-btn">Fast Food &#9662;</button>
-      <div class="dropdown-content">
-        <div class="card">
-          <p class="rest-name">Anderson’s Frozen Yogurt</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=2369+Niagara+Fls+Blvd,+Amherst,+NY+14228" target="_blank">2369 Niagara Fls Blvd, Amherst, NY 14228</a></p>
-          <p class="rest-phone">(716) 691-8970</p>
-        </div>
-        <div class="card">
-          <p class="rest-name">Ted’s Hot Dogs</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=2351+Niagara+Fls+Blvd,+Amherst,+NY+14228" target="_blank">2351 Niagara Fls Blvd, Amherst, NY 14228</a></p>
-          <p class="rest-phone">(716) 691-7883</p>
-        </div>
-        <div class="card">
-          <p class="rest-name">Checkers</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=2374+Niagara+Fls+Blvd,+Tonawanda,+NY+14150" target="_blank">2374 Niagara Fls Blvd, Tonawanda, NY 14150</a></p>
-          <p class="rest-phone">(716) 262-2046</p>
-        </div>
-        <div class="card">
-          <p class="rest-name">Wendy’s</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=3180+Niagara+Fls+Blvd,+Amherst,+NY+14228" target="_blank">3180 Niagara Fls Blvd, Amherst, NY 14228</a></p>
-          <p class="rest-phone">(716) 220-9526</p>
-        </div>
-        <div class="card">
-          <p class="rest-name">McDonald’s</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=1385+Niagara+Fls+Blvd,+Amherst,+NY+14226" target="_blank">1385 Niagara Fls Blvd, Amherst, NY 14226</a></p>
-          <p class="rest-phone">(716) 213-0014</p>
-        </div>
-      </div>
+      if (!select) return;
 
-      <!-- Italian -->
-      <button id="cuisineItalian" class="dropdown-btn">Italian &#9662;</button>
-      <div class="dropdown-content">
-        <div class="card">
-          <p class="rest-name">Carrabba's Italian Grill</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=1645+Niagara+Fls+Blvd,+Amherst,+NY+14228" target="_blank">1645 Niagara Fls Blvd, Amherst, NY 14228</a></p>
-          <p class="rest-phone">(716) 833-5003</p>
-        </div>
-        <div class="card">
-          <p class="rest-name">Olive Garden</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=3951+Maple+Rd,+Amherst,+NY+14226" target="_blank">3951 Maple Rd, Amherst, NY 14226</a></p>
-          <p class="rest-phone">(716) 837-5211</p>
-        </div>
-        <div class="card">
-          <p class="rest-name">Lumber Jack’s Patio Grill</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=1000+River+Rd,+North+Tonawanda,+NY+14120" target="_blank">1000 River Rd, North Tonawanda, NY 14120</a></p>
-          <p class="rest-phone">(716) 693-4349</p>
-        </div>
-      </div>
+      for (let i = 0; i < select.options.length; i++) {
 
-      <!-- Japanese / Thai -->
-      <button id="cuisineJapaneseThai" class="dropdown-btn">Japanese / Thai &#9662;</button>
-      <div class="dropdown-content">
-        <div class="card">
-          <p class="rest-name">Kani Japanese & Thai</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=2298+Niagara+Fls+Blvd,+Tonawanda,+NY+14150" target="_blank">2298 Niagara Fls Blvd, Tonawanda, NY 14150</a></p>
-          <p class="rest-phone">(716) 743-5434</p>
-        </div>
-      </div>
+        if (
+          select.options[i]
+            .value
+            .indexOf(lang) > -1
+        ) {
 
-      <!-- Mexican -->
-      <button id="cuisineMexican" class="dropdown-btn">Mexican &#9662;</button>
-      <div class="dropdown-content">
-        <div class="card">
-          <p class="rest-name">El Ranchito 3</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=2447+Niagara+Fls+Blvd,+Buffalo,+NY+14228" target="_blank">2447 Niagara Fls Blvd, Buffalo, NY 14228</a></p>
-          <p class="rest-phone">(716) 691-5806</p>
-        </div>
-      </div>
+          select.selectedIndex = i;
 
-      <!-- Bar & Grill -->
-      <button id="cuisineBarGrill" class="dropdown-btn">Bar & Grill &#9662;</button>
-      <div class="dropdown-content">
-        <div class="card">
-          <p class="rest-name">Raintree Bar and Grill</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=2970+Colvin+Blvd,+Tonawanda,+NY+14150" target="_blank">2970 Colvin Blvd, Tonawanda, NY 14150</a></p>
-          <p class="rest-phone">(716) 695-3504</p>
-        </div>
-        <div class="card">
-          <p class="rest-name">1818 Bar & Grill</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=1818+Sweeney+St,+North+Tonawanda,+NY+14120" target="_blank">1818 Sweeney St, North Tonawanda, NY 14120</a></p>
-          <p class="rest-phone">(716) 260-1832</p>
-        </div>
-      </div>
+          select.dispatchEvent(
+            new Event('change')
+          );
 
-      <!-- American / Grill -->
-      <button id="cuisineAmericanGrill" class="dropdown-btn">American / Grill &#9662;</button>
-      <div class="dropdown-content">
-        <div class="card">
-          <p class="rest-name">Applebee's Grill + Bar</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=2656+Delaware+Ave,+Buffalo,+NY+14216" target="_blank">2656 Delaware Ave, Buffalo, NY 14216</a></p>
-          <p class="rest-phone">(716) 831-8062</p>
-        </div>
-        <div class="card">
-          <p class="rest-name">Outback Steakhouse</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=1551+Niagara+Fls+Blvd,+Amherst,+NY+14228" target="_blank">1551 Niagara Fls Blvd, Amherst, NY 14228</a></p>
-          <p class="rest-phone">(716) 833-6067</p>
-        </div>
-        <div class="card">
-          <p class="rest-name">Tully's Good Times Amherst</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=1459+Niagara+Fls+Unit+D,+Amherst,+NY+14228" target="_blank">1459 Niagara Fls Unit D, Amherst, NY 14228</a></p>
-          <p class="rest-phone">(716) 446-0007</p>
-        </div>
-      </div>
+          break;
 
-      <!-- Chinese / Asian -->
-      <button id="cuisineChineseAsian" class="dropdown-btn">Chinese / Asian &#9662;</button>
-      <div class="dropdown-content">
-        <div class="card">
-          <p class="rest-name">Golden Wok</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=3870+E+Robinson+Rd+%232001,+Amherst,+NY+14228" target="_blank">3870 E Robinson Rd #2001, Amherst, NY 14228</a></p>
-          <p class="rest-phone">(716) 691-0399</p>
-        </div>
-        <div class="card">
-          <p class="rest-name">P.F. Chang's</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=Galleria+Drive,+Buffalo,+NY" target="_blank">Galleria Drive, Buffalo, NY</a></p>
-          <p class="rest-phone">(716) 706-0791</p>
-        </div>
-      </div>
+        }
 
-      <!-- Italian / Bar -->
-      <button id="cuisineItalianBar" class="dropdown-btn">Italian / Bar &#9662;</button>
-      <div class="dropdown-content">
-        <div class="card">
-          <p class="rest-name">Sinatra’s</p>
-          <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=945+Kenmore+Ave,+Tonawanda,+NY+14223" target="_blank">945 Kenmore Ave, Tonawanda, NY 14223</a></p>
-          <p class="rest-phone">(716) 877-9419</p>
-        </div>
-      </div>
+      }
 
-    </div>
-  </div>
+      document
+        .getElementById('langMenu')
+        .classList
+        .remove('show');
 
-  <!-- Groceries Tab -->
-  <!-- Groceries Section -->
-<div id="groceries" class="tab-content" style="display:none;">
-  <div class="dropdown-container">
+    }
 
-    <!-- Supermarkets / Big-Box -->
-    <button id="groceriesSupermarket" class="dropdown-btn">Supermarkets / Big-Box &#9662;</button>
-    <div class="dropdown-content">
-      <div class="card">
-        <p class="rest-name">Walmart Supercenter</p>
-        <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=886+Niagara+Falls+Blvd,+North+Tonawanda,+NY+14120" target="_blank">886 Niagara Falls Blvd, North Tonawanda, NY 14120</a></p>
-      </div>
-      <div class="card">
-        <p class="rest-name">Walmart Supercenter</p>
-        <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=3290+Sheridan+Dr,+Amherst,+NY+14226" target="_blank">3290 Sheridan Dr, Amherst, NY 14226</a></p>
-      </div>
-      <div class="card">
-        <p class="rest-name">Wegmans</p>
-        <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=675+Alberta+Dr,+Amherst,+NY+14226" target="_blank">675 Alberta Dr, Amherst, NY 14226</a></p>
-      </div>
-      <div class="card">
-        <p class="rest-name">Tops Friendly Markets</p>
-        <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=3980+Maple+Rd,+Amherst,+NY+14226" target="_blank">3980 Maple Rd, Amherst, NY 14226</a></p>
-      </div>
-      <div class="card">
-        <p class="rest-name">Price Rite Marketplace of Amherst</p>
-        <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=4224+Maple+Rd,+Amherst,+NY+14226" target="_blank">4224 Maple Rd, Amherst, NY 14226</a></p>
-      </div>
-    </div>
 
-    <!-- Specialty / Organic / Premium -->
-    <button id="groceriesSpecialty" class="dropdown-btn">Specialty / Organic &#9662;</button>
-    <div class="dropdown-content">
-      <div class="card">
-        <p class="rest-name">Whole Foods Market</p>
-        <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=3139+Sheridan+Dr,+Amherst,+NY+14226" target="_blank">3139 Sheridan Dr, Amherst, NY 14226</a></p>
-      </div>
-      <div class="card">
-        <p class="rest-name">Trader Joe's</p>
-        <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=1565+Niagara+Falls+Blvd,+Amherst,+NY+14228" target="_blank">1565 Niagara Falls Blvd, Amherst, NY 14228</a></p>
-      </div>
-    </div>
+    window.addEventListener('click', function (event) {
 
-    <!-- Discount / Value Stores -->
-    <button id="groceriesDiscount" class="dropdown-btn">Discount / Value Stores &#9662;</button>
-    <div class="dropdown-content">
-      <div class="card">
-        <p class="rest-name">ALDI</p>
-        <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=4030+Maple+Rd,+Amherst,+NY+14226" target="_blank">4030 Maple Rd, Amherst, NY 14226</a></p>
-      </div>
-      <div class="card">
-        <p class="rest-name">ALDI</p>
-        <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=3939+Niagara+Falls+Blvd,+North+Tonawanda,+NY+14120" target="_blank">3939 Niagara Falls Blvd, North Tonawanda, NY 14120</a></p>
-      </div>
-      <div class="card">
-        <p class="rest-name">Dollar General</p>
-        <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=2250+Niagara+Falls+Blvd,+Tonawanda,+NY+14150" target="_blank">2250 Niagara Falls Blvd, Tonawanda, NY 14150</a></p>
-      </div>
-    </div>
+      if (!event.target.closest('.language-selector')) {
 
-    <!-- Ethnic / International -->
-    <button id="groceriesEthnic" class="dropdown-btn">Ethnic / International &#9662;</button>
-    <div class="dropdown-content">
-      <div class="card">
-        <p class="rest-name">Asia Food Market</p>
-        <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=2055+Niagara+Falls+Blvd,+Amherst,+NY+14228" target="_blank">2055 Niagara Falls Blvd, Amherst, NY 14228</a></p>
-      </div>
-      <div class="card">
-        <p class="rest-name">Euro Taste Foods and Deli</p>
-        <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=2858+Niagara+Falls+Blvd,+Buffalo,+NY+14228" target="_blank">2858 Niagara Falls Blvd, Buffalo, NY 14228</a></p>
-      </div>
-    </div>
+        document
+          .getElementById('langMenu')
+          .classList
+          .remove('show');
 
-    <!-- Convenience / Local Plazas -->
-    <button id="groceriesConvenience" class="dropdown-btn">Convenience / Local Plazas &#9662;</button>
-    <div class="dropdown-content">
-      <div class="card">
-        <p class="rest-name">Tops Plaza</p>
-        <p class="rest-address"><a href="https://www.google.com/maps/search/?api=1&query=3190+Niagara+Falls+Blvd,+Buffalo,+NY+14228" target="_blank">3190 Niagara Falls Blvd, Buffalo, NY 14228</a></p>
-      </div>
-    </div>
+      }
 
-  </div>
-</div>
-
-</section>
-
-<!-- CSS -->
-<style>
-  .tab-button.active {
-    background:#003A8F;
-    color:white;
-  }
-  .tab-button {
-    padding:10px 20px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    background:#eee;
-    color:#003A8F;
-    font-weight:bold;
-  }
-  .dropdown-btn {
-    width:100%;
-    padding:12px 15px;
-    border:none;
-    background:#003A8F;
-    color:white;
-    font-weight:bold;
-    font-size:16px;
-    text-align:left;
-    border-radius:8px;
-    cursor:pointer;
-    margin-bottom:5px;
-  }
-  .dropdown-content {
-    display:none;
-    padding-left:15px;
-    margin-bottom:15px;
-  }
-  .card {
-    background:#fff;
-    border-radius:10px;
-    padding:10px 15px;
-    margin-bottom:10px;
-    box-shadow:0 2px 6px rgba(0,0,0,0.1);
-  }
-  .card .rest-name {
-    font-weight:bold;
-    font-size:16px;
-    margin:0 0 5px 0;
-  }
-  .card .rest-address a {
-    color:#003A8F;
-    text-decoration:none;
-    font-size:14px;
-  }
-  .card .rest-phone {
-    font-size:13px;
-    color:#555;
-    margin:2px 0 0 0;
-  }
-</style>
-
-<!-- JS -->
-<script>
-  // Tab switching
-  const tabButtons = document.querySelectorAll('.tab-button');
-  const tabContents = document.querySelectorAll('.tab-content');
-  tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      tabContents.forEach(tc => tc.style.display='none');
-      document.getElementById(btn.dataset.tab).style.display='block';
     });
-  });
 
-  // Dropdown toggle
-  const dropdowns = document.querySelectorAll('.dropdown-btn');
-  dropdowns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      btn.classList.toggle('active');
-      const content = btn.nextElementSibling;
-      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+  </script>
+
+
+  <script
+    type="text/javascript"
+    src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+  </script>
+
+
+  <!-- =========================================
+       MAIN JAVASCRIPT
+       ========================================= -->
+
+  <script>
+
+    /* =========================================
+       TAB SWITCHING
+       ========================================= */
+
+    const tabButtons =
+      document.querySelectorAll('.tab-button');
+
+    const tabContents =
+      document.querySelectorAll('.tab-content');
+
+
+    tabButtons.forEach(button => {
+
+      button.addEventListener('click', () => {
+
+        tabButtons.forEach(btn =>
+          btn.classList.remove('active')
+        );
+
+        button.classList.add('active');
+
+        tabContents.forEach(content => {
+          content.style.display = 'none';
+        });
+
+        const target =
+          document.getElementById(
+            button.dataset.tab
+          );
+
+        if (target) {
+          target.style.display = 'block';
+        }
+
+      });
+
     });
-  });
-</script>
-
-<script>
-
-  
-const content = {
-  en: {
-    // Header
-    title: "Welcome to Holiday Inn Express",
-    subtitle: "Everything you need for a comfortable stay",
-
-    // Amenities
-    amenitiesTitle: "Hotel Amenities",
-    amenityBreakfast: "Breakfast",
-    amenityBreakfastTime: "Weekdays: 6:00 AM – 9:30 AM<br>Weekends: 6:30 AM – 9:30 AM",
-    amenityPool: "Indoor Pool",
-    amenityPoolTime: "7:00 AM – 10:00 PM",
-    amenityGym: "Fitness Center",
-    amenityGymTime: "Open 24 hours",
-    amenityCoffee: "Coffee Station",
-    amenityCoffeeTime: "24 hours in lobby and room",
-
-    // Wi-Fi
-    wifiTitle: "Connect to Our Wi-Fi",
-    wifiStep1Title: "Step 1",
-    wifiStep1: "Connect to <strong>IHGWiFi.com</strong> from your device.",
-    wifiStep2Title: "Step 2",
-    wifiStep2: "Enter your <strong>IHG One Rewards Membership ID</strong> to enjoy instant access.",
-    wifiStep3Title: "Not a Member?",
-    wifiStep3: "Stop by the Front Desk to enroll today and <strong>earn 1,000 bonus points!</strong> Join our community and unlock exclusive rewards and offers on future stays.",
-
-    // Restaurants
-    restaurantsTitle: "Explore Nearby",
-    cuisineIndian: "Indian Cuisine",
-    cuisinePizza: "Pizza",
-    cuisineFastFood: "Fast Food",
-    cuisineItalian: "Italian",
-    cuisineJapaneseThai: "Japanese / Thai",
-    cuisineMexican: "Mexican",
-    cuisineBarGrill: "Bar & Grill",
-    cuisineAmericanGrill: "American / Grill",
-    cuisineChineseAsian: "Chinese / Asian",
-    cuisineItalianBar: "Italian / Bar",
-
-    // Groceries
-    groceriesTitle: "Groceries",
-    groceriesSupermarket: "Supermarkets / Big-Box",
-    groceriesSpecialty: "Specialty / Organic / Premium",
-    groceriesDiscount: "Discount / Value Stores",
-    groceriesEthnic: "Ethnic / International",
-    groceriesConvenience: "Convenience / Local Plazas",
-
-    // Help
-    helpTitle: "Need Assistance?",
-    helpText: "Please visit or contact the Front Desk — we’re happy to help!"
-  },
-
-  es: {
-    // Header
-    title: "Bienvenido a Holiday Inn Express",
-    subtitle: "Todo lo que necesita para una estancia cómoda",
-
-    // Amenities
-    amenitiesTitle: "Servicios del Hotel",
-    amenityBreakfast: "Desayuno",
-    amenityBreakfastTime: "Días laborables: 6:00 AM – 9:30 AM<br>Fines de semana: 6:30 AM – 9:30 AM",
-    amenityPool: "Piscina Interior",
-    amenityPoolTime: "7:00 AM – 10:00 PM",
-    amenityGym: "Gimnasio",
-    amenityGymTime: "Abierto las 24 horas",
-    amenityCoffee: "Estación de Café",
-    amenityCoffeeTime: "24 horas en lobby y habitación",
-
-    // Wi-Fi
-    wifiTitle: "Acceso a Wi-Fi",
-    wifiStep1Title: "Paso 1",
-    wifiStep1: "Conéctese a <strong>IHGWiFi.com</strong> desde su dispositivo.",
-    wifiStep2Title: "Paso 2",
-    wifiStep2: "Ingrese su número de membresía <strong>IHG One Rewards</strong> para disfrutar de acceso instantáneo.",
-    wifiStep3Title: "¿No es miembro?",
-    wifiStep3: "Visite la recepción para inscribirse hoy y <strong>ganar 1,000 puntos de bonificación!</strong> Únase a nuestra comunidad y desbloquee recompensas y ofertas exclusivas para futuras estadías.",
-
-    // Restaurants
-    restaurantsTitle: "Restaurantes Cercanos",
-    cuisineIndian: "Cocina India",
-    cuisinePizza: "Pizza",
-    cuisineFastFood: "Comida Rápida",
-    cuisineItalian: "Italiana",
-    cuisineJapaneseThai: "Japonesa / Tailandesa",
-    cuisineMexican: "Mexicana",
-    cuisineBarGrill: "Bar & Parrilla",
-    cuisineAmericanGrill: "Americana / Parrilla",
-    cuisineChineseAsian: "China / Asiática",
-    cuisineItalianBar: "Italiana / Bar",
-
-    // Groceries
-    groceriesTitle: "Supermercados",
-    groceriesSupermarket: "Supermercados / Tiendas Grandes",
-    groceriesSpecialty: "Especialidad / Orgánicos / Premium",
-    groceriesDiscount: "Descuento / Tiendas Económicas",
-    groceriesEthnic: "Étnicos / Internacionales",
-    groceriesConvenience: "Conveniencia / Plazas Locales",
-
-    // Help
-    helpTitle: "¿Necesita Ayuda?",
-    helpText: "Visite o contacte la recepción — ¡con gusto le ayudamos!"
-  }
-};
 
 
-// Language switch function
-let currentLang = "en";
+    /* =========================================
+       RESTAURANT + GROCERY ACCORDION
+       ========================================= */
 
-function toggleLanguage() {
-  const switchElement = document.getElementById("langSwitch");
-
-  if (switchElement.checked) {
-    currentLang = "es";
-  } else {
-    currentLang = "en";
-  }
-
-  setLang(currentLang);
-}
-function setLang(lang) {
-  for (let key in content[lang]) {
-    const el = document.getElementById(key);
-    if(el) el.innerHTML = content[lang][key];
-  }
-}
+    const accordionButtons =
+      document.querySelectorAll(
+        '.restaurant-categories .dropdown-btn, .grocery-categories .dropdown-btn'
+      );
 
 
-</script>
+    accordionButtons.forEach(button => {
 
+      button.addEventListener('click', () => {
+
+        const currentItem =
+          button.parentElement;
+
+        const currentContent =
+          currentItem.querySelector(
+            '.dropdown-content'
+          );
+
+        const parent =
+          currentItem.parentElement;
+
+
+        /* Close all other open items */
+
+        parent
+          .querySelectorAll('.cuisine-item, .grocery-item')
+          .forEach(item => {
+
+            if (item !== currentItem) {
+
+              const otherButton =
+                item.querySelector('.dropdown-btn');
+
+              const otherContent =
+                item.querySelector('.dropdown-content');
+
+              if (otherButton) {
+                otherButton.classList.remove('active');
+              }
+
+              if (otherContent) {
+                otherContent.style.maxHeight = null;
+              }
+
+            }
+
+          });
+
+
+        /* Toggle current */
+
+        button.classList.toggle('active');
+
+
+        if (button.classList.contains('active')) {
+
+          currentContent.style.maxHeight =
+            currentContent.scrollHeight + "px";
+
+        } else {
+
+          currentContent.style.maxHeight = null;
+
+        }
+
+      });
+
+    });
+
+
+    /* =========================================
+       RESTAURANT SEARCH
+       ========================================= */
+
+    function filterRestaurants() {
+
+      const input =
+        document
+          .getElementById('searchInput')
+          .value
+          .toLowerCase()
+          .trim();
+
+
+      const restaurantCards =
+        document.querySelectorAll(
+          '#restaurants .restaurant-card'
+        );
+
+
+      restaurantCards.forEach(card => {
+
+        const text =
+          card.innerText.toLowerCase();
+
+        card.style.display =
+          text.includes(input)
+            ? 'flex'
+            : 'none';
+
+      });
+
+
+      /* Automatically open categories
+         containing search results */
+
+      if (input.length > 0) {
+
+        document
+          .querySelectorAll(
+            '#restaurants .cuisine-item'
+          )
+          .forEach(item => {
+
+            const content =
+              item.querySelector(
+                '.dropdown-content'
+              );
+
+            const button =
+              item.querySelector(
+                '.dropdown-btn'
+              );
+
+            const visibleCards =
+              item.querySelectorAll(
+                '.restaurant-card'
+              );
+
+
+            let found = false;
+
+            visibleCards.forEach(card => {
+
+              if (
+                card.innerText
+                  .toLowerCase()
+                  .includes(input)
+              ) {
+                found = true;
+              }
+
+            });
+
+
+            if (found) {
+
+              button.classList.add('active');
+
+              content.style.maxHeight =
+                content.scrollHeight + "px";
+
+            }
+
+          });
+
+      }
+
+    }
+
+  </script>
 
 </body>
+
 </html>
